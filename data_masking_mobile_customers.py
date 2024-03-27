@@ -18,7 +18,7 @@ df['username'] = df['username'].apply(lambda x: fake.user_name())
 df['name'] = df['name'].apply(lambda x: fake.name())
 
 #Mask email addresses
-df['username'] = df['username'].apply(lambda x: fake.user_name())
+df['email'] = df['email'].apply(lambda x: fake.email())
 
 #Add noise to date_registered and birthday columns
 df['date_registered'] = df['date_registered'] + pd.to_timedelta(np.random.randint(-365,365,size=len(df)), unit='D')
@@ -36,3 +36,13 @@ df['credit_card_expire'] = df['credit_card_expire'].apply(lambda x : fake.future
 df['credit_card_number'] = df['credit_card_number'].apply(lambda x : fake.credit_card_number())
 df['credit_card_security_code'] = df['credit_card_security_code'].apply(lambda x : fake.credit_card_security_code())
 
+#Toakenize employer and job columns
+df['employer'] = df['employer'].apply(lambda x: fake.company())
+df['job'] = df['job'].apply(lambda x: fake.job())
+
+#Replace residence and address with fake values
+df['residence'] = df['residence'].apply(lambda x: fake.city())
+df['address'] = df['address'].apply(lambda x: fake.address())
+
+#Save data to CSV
+df.to_csv('/Users/yashwanthreddymaddi/Data_Cleaning/manipulated_data.csv', index= False)
